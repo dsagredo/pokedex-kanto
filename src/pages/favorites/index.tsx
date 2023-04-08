@@ -4,8 +4,6 @@ import NoFavorites from '@/components/ui/NoFavorites';
 import { localFavorites } from '@/utils';
 import { Card, Grid } from '@nextui-org/react';
 
-const a = 'prueba';
-
 const FavoritesPage = () => {
     const [favoritePokemons, setFavoritePokemons] = useState<number[]>([]);
 

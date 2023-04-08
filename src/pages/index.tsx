@@ -1,9 +1,9 @@
-import type { NextPage, GetStaticProps } from "next";
-import { Grid } from "@nextui-org/react";
-import { Layout } from "@/components/layouts";
-import { pokeApi } from "@/api";
-import { PokemonListResponse, SmallPokemon } from "@/interfaces";
-import PokemonCard from "@/components/pokemon/PokemonCard";
+import type { NextPage, GetStaticProps } from 'next';
+import { Grid } from '@nextui-org/react';
+import { Layout } from '@/components/layouts';
+import { pokeApi } from '@/api';
+import { PokemonListResponse, SmallPokemon } from '@/interfaces';
+import PokemonCard from '@/components/pokemon/PokemonCard';
 
 interface Props {
     pokemons: SmallPokemon[];
@@ -21,10 +21,8 @@ const Home: NextPage<Props> = ({ pokemons }) => {
     );
 };
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-    const { data } = await pokeApi.get<PokemonListResponse>(
-        "pokemon?limit=151"
-    );
+export const getStaticProps: GetStaticProps = async () => {
+    const { data } = await pokeApi.get<PokemonListResponse>('pokemon?limit=151');
 
     const pokemons: SmallPokemon[] = data.results.map((value, index) => ({
         ...value,
