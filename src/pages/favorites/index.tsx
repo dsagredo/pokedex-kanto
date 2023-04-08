@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { Layout } from "@/components/layouts";
-import NoFavorites from "@/components/ui/NoFavorites";
-import { localFavorites } from "@/utils";
-import { Card, Grid } from "@nextui-org/react";
+import { useState, useEffect } from 'react';
+import { Layout } from '@/components/layouts';
+import NoFavorites from '@/components/ui/NoFavorites';
+import { localFavorites } from '@/utils';
+import { Card, Grid } from '@nextui-org/react';
 
-const a = "hola";
+const a = 'prueba';
 
 const FavoritesPage = () => {
     const [favoritePokemons, setFavoritePokemons] = useState<number[]>([]);
@@ -24,7 +24,7 @@ const FavoritesPage = () => {
                             <Card isHoverable isPressable css={{ padding: 10 }}>
                                 <Card.Image
                                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
-                                    width={"100%"}
+                                    width={'100%'}
                                     height={140}
                                 />
                             </Card>
