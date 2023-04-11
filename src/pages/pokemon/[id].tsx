@@ -111,7 +111,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { id } = params as { id: string };
-    return { props: { pokemon: await getPokemonInfo(id) } };
+    const pokemon = await getPokemonInfo(id);
+    if (!pokemon) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
+    return { props: { pokemon }, revalidate: 86400 };
 };
 
 export default PokemonPage;
