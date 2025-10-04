@@ -10,18 +10,18 @@ interface Props {
 const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
     return (
         <Layout title="Pokédex - Primera Generación">
-            <div className="mb-12 text-center space-y-4">
-                <div className="inline-block">
-                    <h2 className="text-6xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent mb-3 tracking-tight">
+            <div className="mb-8 sm:mb-12 text-center space-y-3 sm:space-y-4">
+                <div className="inline-block px-4">
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2 sm:mb-3 tracking-tight">
                         PRIMERA GENERACIÓN
                     </h2>
-                    <div className="h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+                    <div className="h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
                 </div>
-                <p className="text-slate-400 text-xl font-medium max-w-2xl mx-auto">
+                <p className="text-slate-400 text-base sm:text-xl font-medium max-w-2xl mx-auto px-4">
                     Explora los 151 Pokémon legendarios de Kanto
                 </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
                 {pokemons.map(
                     (pokemon): JSX.Element => (
                         <PokemonCard key={pokemon.id} pokemon={pokemon} />
