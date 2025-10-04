@@ -43,6 +43,8 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
                     <h3 className="text-sm sm:text-lg lg:text-xl font-black capitalize bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent text-center tracking-wide truncate">
                         {pokemon.name}
                     </h3>
+                  <p>{pokemen.weight}</p>
+                  <p>{pokemon.height}</p>
                 </div>
             </CardFooter>
         </Card>
