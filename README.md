@@ -53,6 +53,4 @@ npm run lint     # Ejecutar ESLint
 
 ## Deploy en Vercel
 
-https://project-pokemon-nextjs.vercel.app/
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dsagredo/project-pokemon-nextjs)
+[Deploy with Vercel](https://pokedex-kanto-nine.vercel.app/)
