@@ -14,10 +14,6 @@ export const Navbar = () => {
                 <h2 className="text-xl font-bold text-white">P</h2>
                 <h3 className="text-lg text-white">okémon</h3>
             </Link>
-
-            <Link href="/favorites" passHref>
-                <span className="text-white">Favoritos</span>
-            </Link>
         </div>
     );
 };
