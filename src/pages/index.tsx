@@ -10,7 +10,7 @@ interface Props {
 const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
     return (
         <Layout title="Listado de Pokémons">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
+            <div className="gap-2 grid grid-cols-3 sm:grid-cols-4">
                 {pokemons.map(
                     (pokemon): JSX.Element => (
                         <PokemonCard key={pokemon.id} pokemon={pokemon} />

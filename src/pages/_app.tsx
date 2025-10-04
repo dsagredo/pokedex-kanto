@@ -1,18 +1,20 @@
-import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { HeroUIProvider } from '@heroui/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 import '@/styles/globals.css';
+import { Inter } from 'next/font/google';
 
-const App = ({ Component, pageProps }: AppProps): JSX.Element => {
+const inter = Inter({ subsets: ['latin'] });
+
+export default function App({ Component, pageProps }: AppProps) {
     return (
-        <HeroUIProvider>
+        <main className={inter.className}>
             <NextThemesProvider attribute="class" defaultTheme="system">
-                <Component {...pageProps} />
+                <HeroUIProvider>
+                    <Component {...pageProps} />
+                </HeroUIProvider>
             </NextThemesProvider>
-        </HeroUIProvider>
+        </main>
     );
-};
-
-export default App;
+}

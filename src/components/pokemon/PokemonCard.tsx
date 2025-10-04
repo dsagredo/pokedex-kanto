@@ -1,7 +1,8 @@
-import { FC } from 'react';
-import { SmallPokemon } from '@/interfaces';
-import { Card, CardHeader, CardBody, CardFooter } from '@heroui/card';
+import { Card, CardBody, CardFooter } from '@heroui/card';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import type { FC } from 'react';
+import { SmallPokemon } from '@/interfaces';
 
 interface Props {
     pokemon: SmallPokemon;
@@ -9,22 +10,23 @@ interface Props {
 
 const PokemonCard: FC<Props> = ({ pokemon }) => {
     const router = useRouter();
-    const onClick = () => router.push(`/name/${pokemon.name}`);
+
     return (
-        <Card className="cursor-pointer hover:shadow-xl transition-shadow" onClick={onClick}>
-            <CardHeader>
-                <img src={pokemon.img} alt={pokemon.name} className="w-full h-36 object-contain" />
-            </CardHeader>
-
-            <CardBody className="p-2">
-                <h2 className="capitalize text-gray-900 dark:text-white font-medium">
-                    {pokemon.name}
-                </h2>
+        <Card isPressable isHoverable onClick={() => router.push(`/name/${pokemon.name}`)}>
+            <CardBody>
+                <Image
+                    src={pokemon.img}
+                    alt={pokemon.name}
+                    width={256}
+                    height={144}
+                    className="w-full h-36 object-contain"
+                    priority
+                />
             </CardBody>
-
-            <CardFooter className="flex justify-between p-2 bg-gray-100 dark:bg-gray-900">
-                {/* Aquí puedes agregar botones, stats, etc. */}
-                <span>ID: {pokemon.id}</span>
+            <CardFooter>
+                <div className="flex justify-between">
+                    <span className="capitalize">{pokemon.name}</span>
+                </div>
             </CardFooter>
         </Card>
     );
