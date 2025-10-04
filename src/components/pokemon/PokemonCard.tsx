@@ -18,9 +18,6 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
             className={`card-hover glow-hover bg-gradient-to-br ${colors.from} ${colors.to} border-2 ${colors.border} shadow-2xl overflow-hidden group`}
         >
             <CardBody className="p-0 relative">
-                <div className={`absolute top-2 right-2 sm:top-3 sm:right-3 z-20 bg-slate-950/90 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-full border ${colors.border}`}>
-                    <span className={`text-[10px] sm:text-xs font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent`}>#{String(pokemon.id).padStart(3, '0')}</span>
-                </div>
 
                 <div className={`absolute inset-0 bg-gradient-to-br ${colors.from}/10 ${colors.via}/5 ${colors.to}/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
