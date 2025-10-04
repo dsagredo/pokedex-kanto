@@ -18,7 +18,6 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
             className={`card-hover glow-hover bg-gradient-to-br ${colors.from} ${colors.to} border-2 ${colors.border} shadow-2xl overflow-hidden group`}
         >
             <CardBody className="p-0 relative">
-
                 <div className={`absolute inset-0 bg-gradient-to-br ${colors.from}/10 ${colors.via}/5 ${colors.to}/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
                 <div className={`relative w-full aspect-square bg-gradient-to-br ${colors.from}/50 ${colors.to}/50 p-4 sm:p-6 lg:p-8 flex items-center justify-center`}>
