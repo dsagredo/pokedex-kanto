@@ -53,4 +53,4 @@ npm run lint     # Ejecutar ESLint
 
 ## Deploy en Vercel
 
-[Deploy with Vercel](https://pokedex-kanto-nine.vercel.app/)
+https://pokedex-kanto-nine.vercel.app
