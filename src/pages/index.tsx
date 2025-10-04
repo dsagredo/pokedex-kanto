@@ -42,8 +42,7 @@ export const getStaticProps: GetStaticProps = async () => {
     );
 
     const results = await Promise.all(batchPromises);
-
-    // Agregar los datos al array principal
+    
     results.forEach((res, index) => {
       const id = i + index + 1;
       pokemons.push({
