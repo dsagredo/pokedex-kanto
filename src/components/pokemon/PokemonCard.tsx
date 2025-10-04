@@ -2,7 +2,7 @@ import { Card, CardBody, CardFooter } from '@heroui/card';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import type { FC } from 'react';
-import { SmallPokemon } from '@/interfaces';
+import { SmallPokemon } from '@/interfaces/';
 import { getPokemonTypeColors } from '@/utils/pokemonColors';
 
 interface Props {
