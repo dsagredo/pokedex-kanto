@@ -50,6 +50,7 @@ npm run build    # Build de producción
 npm start        # Servidor de producción
 npm run lint     # Ejecutar ESLint
 ```
+<img width="1280" height="705" alt="Imagen PNG" src="https://github.com/user-attachments/assets/7b6d0623-b27e-43d6-bfff-0220f4e0d249" />
 
 ## Deploy en Vercel
 
