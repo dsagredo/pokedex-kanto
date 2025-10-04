@@ -37,13 +37,14 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
                 <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.15),transparent_70%)]"></div>
                     <div className="relative bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl sm:rounded-2xl p-8 sm:p-10 lg:p-12 flex items-center justify-center min-h-[250px] sm:min-h-[350px] lg:min-h-[400px]">
-                        <Image
-                            src={pokemon.sprites.other?.dream_world.front_default || '/no-image.png'}
-                            alt={pokemon.name}
-                            width={350}
-                            height={350}
-                            className="drop-shadow-[0_0_50px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform duration-500 max-w-full h-auto"
-                        />
+                        <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
+                            <Image
+                                src={pokemon.sprites.other?.dream_world.front_default || '/no-image.png'}
+                                alt={pokemon.name}
+                                fill
+                                className="drop-shadow-[0_0_50px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform duration-500 object-contain"
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -92,41 +93,45 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.1),transparent_60%)]"></div>
                         <h3 className="relative text-xl sm:text-2xl font-black text-blue-300 mb-4 sm:mb-6 uppercase tracking-wider">Sprites</h3>
                         <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 aspect-square">
-                                <Image
-                                    src={pokemon.sprites.front_default}
-                                    alt={`${pokemon.name} frontal`}
-                                    width={96}
-                                    height={96}
-                                    className="pixelated drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] w-full h-auto"
-                                />
+                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                                <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+                                    <Image
+                                        src={pokemon.sprites.front_default}
+                                        alt={`${pokemon.name} frontal`}
+                                        fill
+                                        className="pixelated drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] object-contain"
+                                    />
+                                </div>
                             </div>
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 aspect-square">
-                                <Image
-                                    src={pokemon.sprites.back_default}
-                                    alt={`${pokemon.name} trasero`}
-                                    width={96}
-                                    height={96}
-                                    className="pixelated drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] w-full h-auto"
-                                />
+                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                                <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+                                    <Image
+                                        src={pokemon.sprites.back_default}
+                                        alt={`${pokemon.name} trasero`}
+                                        fill
+                                        className="pixelated drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] object-contain"
+                                    />
+                                </div>
                             </div>
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 aspect-square">
-                                <Image
-                                    src={pokemon.sprites.front_shiny}
-                                    alt={`${pokemon.name} shiny frontal`}
-                                    width={96}
-                                    height={96}
-                                    className="pixelated drop-shadow-[0_0_15px_rgba(234,179,8,0.7)] w-full h-auto"
-                                />
+                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                                <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+                                    <Image
+                                        src={pokemon.sprites.front_shiny}
+                                        alt={`${pokemon.name} shiny frontal`}
+                                        fill
+                                        className="pixelated drop-shadow-[0_0_15px_rgba(234,179,8,0.7)] object-contain"
+                                    />
+                                </div>
                             </div>
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 aspect-square">
-                                <Image
-                                    src={pokemon.sprites.back_shiny}
-                                    alt={`${pokemon.name} shiny trasero`}
-                                    width={96}
-                                    height={96}
-                                    className="pixelated drop-shadow-[0_0_15px_rgba(234,179,8,0.7)] w-full h-auto"
-                                />
+                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                                <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+                                    <Image
+                                        src={pokemon.sprites.back_shiny}
+                                        alt={`${pokemon.name} shiny trasero`}
+                                        fill
+                                        className="pixelated drop-shadow-[0_0_15px_rgba(234,179,8,0.7)] object-contain"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

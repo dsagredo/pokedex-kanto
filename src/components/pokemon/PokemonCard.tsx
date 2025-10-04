@@ -25,16 +25,17 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
 
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-cyan-600/5 to-teal-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                <div className="relative w-full aspect-square bg-gradient-to-br from-slate-700/50 to-slate-800/50 p-4 sm:p-6 lg:p-8">
+                <div className="relative w-full aspect-square bg-gradient-to-br from-slate-700/50 to-slate-800/50 p-4 sm:p-6 lg:p-8 flex items-center justify-center">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]"></div>
-                    <Image
-                        src={pokemon.img}
-                        alt={pokemon.name}
-                        width={256}
-                        height={256}
-                        className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] relative z-10 group-hover:scale-110 transition-transform duration-500"
-                        priority
-                    />
+                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32">
+                        <Image
+                            src={pokemon.img}
+                            alt={pokemon.name}
+                            fill
+                            className="drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] relative z-10 group-hover:scale-110 transition-transform duration-500 object-contain"
+                            priority
+                        />
+                    </div>
                 </div>
             </CardBody>
             <CardFooter className="bg-slate-900/90 backdrop-blur-sm border-t border-blue-500/20 py-3 sm:py-4 px-3 sm:px-4">
