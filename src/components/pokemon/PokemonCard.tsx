@@ -15,9 +15,6 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
 
     return (
         <Card
-            isPressable
-            isHoverable
-            onClick={() => router.push(`/name/${pokemon.name}`)}
             className={`card-hover glow-hover bg-gradient-to-br ${colors.from} ${colors.to} border-2 ${colors.border} shadow-2xl overflow-hidden group`}
         >
             <CardBody className="p-0 relative">
