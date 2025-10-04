@@ -43,8 +43,20 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
                     <h3 className="text-sm sm:text-lg lg:text-xl font-black capitalize bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent text-center tracking-wide truncate">
                         {pokemon.name}
                     </h3>
+                    {pokemon.height !== undefined && pokemon.weight !== undefined && (
+                        <div className="grid grid-cols-2 gap-2">
+                            <div className="bg-slate-800/50 rounded-lg p-1.5 border border-blue-500/20 text-center">
+                                <span className="text-[8px] sm:text-[10px] font-bold text-blue-400 uppercase block">Altura</span>
+                                <span className="text-xs sm:text-sm font-black text-cyan-300 block">{pokemon.height / 10}m</span>
+                            </div>
+                            <div className="bg-slate-800/50 rounded-lg p-1.5 border border-blue-500/20 text-center">
+                                <span className="text-[8px] sm:text-[10px] font-bold text-blue-400 uppercase block">Peso</span>
+                                <span className="text-xs sm:text-sm font-black text-cyan-300 block">{pokemon.weight / 10}kg</span>
+                            </div>
+                        </div>
+                    )}
                     {pokemon.stats && (
-                        <div className="grid grid-cols-3 gap-2 mt-2">
+                        <div className="grid grid-cols-3 gap-2">
                             {pokemon.stats.slice(0, 3).map((stat, index) => {
                                 const statNames: Record<string, string> = {
                                     hp: 'HP',
