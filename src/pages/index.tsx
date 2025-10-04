@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
-  console.log("pokemons", pokemons);
     return (
         <Layout title="Pokédex - Primera Generación">
             <div className="mb-8 sm:mb-12 text-center space-y-3 sm:space-y-4">
