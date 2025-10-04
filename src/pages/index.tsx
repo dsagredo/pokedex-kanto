@@ -10,13 +10,16 @@ interface Props {
 const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
     return (
         <Layout title="Pokédex - Primera Generación">
-            <div className="mb-8 sm:mb-12 text-center space-y-3 sm:space-y-4">
+            <div className="mb-8 sm:mb-12 text-center space-y-4 sm:space-y-6">
                 <div className="inline-block px-4">
-                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2 sm:mb-3 tracking-tight">
-                        PRIMERA GENERACIÓN
-                    </h2>
-                    <div className="h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black bg-gradient-to-r from-red-400 via-yellow-400 to-blue-400 bg-clip-text text-transparent mb-3 sm:mb-4 tracking-tight drop-shadow-2xl">
+                        POKÉDEX KANTO
+                    </h1>
+                    <div className="h-1 sm:h-1.5 bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 rounded-full shadow-lg"></div>
                 </div>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-slate-300 to-slate-400 bg-clip-text text-transparent tracking-wide">
+                    Primera Generación
+                </h2>
                 <p className="text-slate-400 text-base sm:text-xl font-medium max-w-2xl mx-auto px-4">
                     Explora los 151 Pokémon legendarios de Kanto
                 </p>

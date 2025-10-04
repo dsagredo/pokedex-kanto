@@ -1,5 +1,4 @@
 import { Card, CardBody, CardFooter } from '@heroui/card';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import type { FC } from 'react';
 import { SmallPokemon } from '@/interfaces/';
@@ -10,7 +9,6 @@ interface Props {
 }
 
 const PokemonCard: FC<Props> = ({ pokemon }) => {
-    const router = useRouter();
     const colors = getPokemonTypeColors(pokemon.types);
 
     return (
