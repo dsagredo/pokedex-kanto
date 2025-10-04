@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Pokédex Kanto - 151 Pokémon de Primera Generación',
     description: 'Explora la Pokédex completa de Kanto con los 151 Pokémon originales. Descubre estadísticas, habilidades, tipos y más información detallada de cada Pokémon de la primera generación.',
     keywords: ['pokémon', 'pokédex', 'kanto', 'primera generación', 'pokémon red', 'pokémon blue', 'estadísticas pokémon', 'tipos pokémon'],
-    authors: [{ name: 'Pokédex Kanto' }],
+    authors: [{ name: 'Diego Sagredo' }],
     creator: 'Pokédex Kanto',
     publisher: 'Pokédex Kanto',
     openGraph: {
@@ -19,25 +19,6 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'es_ES',
         siteName: 'Pokédex Kanto',
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Pokédex Kanto - 151 Pokémon de Primera Generación',
-        description: 'Explora la Pokédex completa de Kanto con los 151 Pokémon originales.',
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-        },
-    },
-    verification: {
-        google: 'google-site-verification-token',
     },
 };
 
