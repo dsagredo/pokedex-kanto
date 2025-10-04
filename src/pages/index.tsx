@@ -17,9 +17,6 @@ const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
                     </h1>
                     <div className="h-1 sm:h-1.5 bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 rounded-full shadow-lg"></div>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-slate-300 to-slate-400 bg-clip-text text-transparent tracking-wide">
-                    Primera Generación
-                </h2>
                 <p className="text-slate-400 text-base sm:text-xl font-medium max-w-2xl mx-auto px-4">
                     Explora los 151 Pokémon legendarios de Kanto
                 </p>
