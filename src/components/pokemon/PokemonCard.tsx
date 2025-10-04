@@ -39,12 +39,29 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
                 </div>
             </CardBody>
             <CardFooter className="bg-slate-900/90 backdrop-blur-sm border-t border-blue-500/20 py-3 sm:py-4 px-3 sm:px-4">
-                <div className="w-full">
+                <div className="w-full space-y-2">
                     <h3 className="text-sm sm:text-lg lg:text-xl font-black capitalize bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent text-center tracking-wide truncate">
                         {pokemon.name}
                     </h3>
-                  <p>peso: {pokemon.weight}</p>
-                  <p>altura: {pokemon.height}</p>
+                    {pokemon.stats && (
+                        <div className="grid grid-cols-3 gap-2 mt-2">
+                            {pokemon.stats.slice(0, 3).map((stat, index) => {
+                                const statNames: Record<string, string> = {
+                                    hp: 'HP',
+                                    attack: 'ATK',
+                                    defense: 'DEF',
+                                };
+                                return (
+                                    <div key={index} className="bg-slate-800/50 rounded-lg p-1.5 border border-blue-500/20 text-center">
+                                        <span className="text-[8px] sm:text-[10px] font-bold text-blue-400 uppercase block">
+                                            {statNames[stat.stat.name] || stat.stat.name}
+                                        </span>
+                                        <span className="text-xs sm:text-sm font-black text-cyan-300 block">{stat.base_stat}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             </CardFooter>
         </Card>

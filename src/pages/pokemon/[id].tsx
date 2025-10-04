@@ -96,23 +96,28 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                             <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.1),transparent_60%)]"></div>
                                 <h3 className="relative text-xl sm:text-2xl font-black text-blue-300 mb-4 sm:mb-6 uppercase tracking-wider">Estadísticas</h3>
-                                <div className="relative space-y-3">
-                                    {pokemonDetails.stats.map((statItem, index) => (
-                                        <div key={index} className="bg-slate-700/30 rounded-lg p-3 sm:p-4 border border-blue-500/20">
-                                            <div className="flex justify-between items-center mb-2">
-                                                <span className="text-xs sm:text-sm font-bold text-blue-400 uppercase tracking-wider">
-                                                    {statItem.stat.name.replace('-', ' ')}
-                                                </span>
-                                                <span className="text-lg sm:text-xl font-black text-cyan-300">{statItem.base_stat}</span>
+                                <div className="relative grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                                    {pokemonDetails.stats.map((statItem, index) => {
+                                        const statNames: Record<string, string> = {
+                                            hp: 'HP',
+                                            attack: 'ATK',
+                                            defense: 'DEF',
+                                            'special-attack': 'SP.ATK',
+                                            'special-defense': 'SP.DEF',
+                                            speed: 'SPD',
+                                        };
+                                        const statName = statNames[statItem.stat.name] || statItem.stat.name.toUpperCase();
+                                        return (
+                                            <div key={index} className="bg-slate-700/30 rounded-lg p-3 sm:p-4 border border-blue-500/20">
+                                                <div className="text-center">
+                                                    <span className="text-xs font-bold text-blue-400 uppercase tracking-wider block mb-2">
+                                                        {statName}
+                                                    </span>
+                                                    <span className="text-2xl sm:text-3xl font-black text-cyan-300 block">{statItem.base_stat}</span>
+                                                </div>
                                             </div>
-                                            <div className="w-full bg-slate-800/50 rounded-full h-2 overflow-hidden">
-                                                <div
-                                                    className="h-full bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 rounded-full transition-all duration-500"
-                                                    style={{ width: `${Math.min((statItem.base_stat / 255) * 100, 100)}%` }}
-                                                ></div>
-                                            </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
 

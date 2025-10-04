@@ -1,7 +1,7 @@
 import type { NextPage, GetStaticProps } from 'next';
 import { Layout } from '@/components/layouts';
 import { pokeApi } from '@/api';
-import { PokemonListResponse, SmallPokemon } from '@/interfaces';
+import { SmallPokemon } from '@/interfaces';
 import PokemonCard from '@/components/pokemon/PokemonCard';
 interface Props {
     pokemons: SmallPokemon[];

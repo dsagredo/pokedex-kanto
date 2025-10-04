@@ -10,4 +10,12 @@ export interface SmallPokemon {
     url: string;
     id: number;
     img: string;
+    weight?: number;
+    height?: number;
+    stats?: Array<{
+        base_stat: number;
+        stat: {
+            name: string;
+        };
+    }>;
 }
