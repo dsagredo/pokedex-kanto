@@ -9,8 +9,16 @@ interface Props {
 
 const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
     return (
-        <Layout title="Listado de Pokémons">
-            <div className="gap-2 grid grid-cols-3 sm:grid-cols-4">
+        <Layout title="Pokédex - Primera Generación">
+            <div className="mb-8">
+                <h2 className="text-4xl font-black text-slate-800 mb-2">
+                    Descubre todos los Pokémon
+                </h2>
+                <p className="text-slate-600 text-lg">
+                    Explora los 151 Pokémon de la primera generación
+                </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {pokemons.map(
                     (pokemon): JSX.Element => (
                         <PokemonCard key={pokemon.id} pokemon={pokemon} />

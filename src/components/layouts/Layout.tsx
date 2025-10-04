@@ -11,11 +11,14 @@ export const Layout: FC<PropsWithChildren<Props>> = ({ children, title }) => {
     return (
         <>
             <Head>
-                <title>{title || 'Pokemon APP'}</title>
+                <title>{title || 'Pokédex - Descubre todos los Pokémon'}</title>
                 <meta name="author" content="Diego Sagredo" />
+                <meta name="description" content="Explora la primera generación de Pokémon con nuestra Pokédex interactiva" />
             </Head>
             <Navbar />
-            <main style={{ padding: '0 20px' }}>{children}</main>
+            <main className="max-w-7xl mx-auto px-6 py-8">
+                {children}
+            </main>
         </>
     );
 };
