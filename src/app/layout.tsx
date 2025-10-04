@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Pokédex Kanto - 151 Pokémon de Primera Generación',
+    title: 'Pokédex Kanto',
     description: 'Explora la Pokédex completa de Kanto con los 151 Pokémon originales. Descubre estadísticas, habilidades, tipos y más información detallada de cada Pokémon de la primera generación.',
     keywords: ['pokémon', 'pokédex', 'kanto', 'primera generación', 'pokémon red', 'pokémon blue', 'estadísticas pokémon', 'tipos pokémon'],
     authors: [{ name: 'Diego Sagredo' }],
