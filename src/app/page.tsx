@@ -6,14 +6,13 @@ async function getPokemonList(): Promise<PokemonT[]> {
     const pokemons: PokemonT[] = [];
 
     for (let i = 0; i < 151; i += 20) {
-        const batchPromises = Array.from(
-            { length: Math.min(20, 151 - i) },
-            (_, j) => pokeApi.get(`pokemon/${i + j + 1}`)
+        const batchPromises = Array.from({ length: Math.min(20, 151 - i) }, (_, j: number) =>
+            pokeApi.get(`pokemon/${i + j + 1}`)
         );
 
         const results = await Promise.all(batchPromises);
 
-        results.forEach((res, index) => {
+        results.forEach((res, index: number): void => {
             const id = i + index + 1;
             pokemons.push({
                 ...res.data,
@@ -26,7 +25,7 @@ async function getPokemonList(): Promise<PokemonT[]> {
     return pokemons;
 }
 
-export default async function HomePage() {
+export default async function HomePage(): Promise<JSX.Element> {
     const pokemons = await getPokemonList();
 
     return (
@@ -43,9 +42,11 @@ export default async function HomePage() {
                 </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
-                {pokemons.map((pokemon) => (
-                    <Card key={pokemon.id} pokemon={pokemon} />
-                ))}
+                {pokemons.map(
+                    (pokemon: PokemonT): JSX.Element => (
+                        <Card key={pokemon.id} pokemon={pokemon} />
+                    )
+                )}
             </div>
         </>
     );
