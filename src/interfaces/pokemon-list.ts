@@ -18,4 +18,9 @@ export interface SmallPokemon {
             name: string;
         };
     }>;
+    types?: Array<{
+        type: {
+            name: string;
+        };
+    }>;
 }

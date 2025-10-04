@@ -6,6 +6,7 @@ import { Pokemon } from '@/interfaces';
 import { getPokemonInfo, localFavorites } from '@/utils';
 import confetti from 'canvas-confetti';
 import { getPokemonDetails, PokemonDetails } from '@/lib/supabase';
+import { getPokemonTypeColors } from '@/utils/pokemonColors';
 
 interface Props {
     pokemon: Pokemon;
@@ -14,6 +15,7 @@ interface Props {
 
 const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
     const [isFavorites, setFavorites] = useState(localFavorites.existInFavorites(pokemon.id));
+    const colors = getPokemonTypeColors(pokemon.types);
 
     const onToggleFavorite = (id: number) => {
         localFavorites.toggleFavorite(id);
@@ -29,37 +31,38 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                 x: 0.5,
                 y: 0.5,
             },
-            colors: ['#3B82F6', '#06B6D4', '#14B8A6', '#22D3EE'],
+            colors: [colors.glow.replace('rgba(', '#').replace(',', '').split(' ')[0]],
         });
     };
 
     return (
         <Layout title={`${pokemon.name} - Pokédex`}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.15),transparent_70%)]"></div>
-                    <div className="relative bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl sm:rounded-2xl p-8 sm:p-10 lg:p-12 flex items-center justify-center min-h-[250px] sm:min-h-[350px] lg:min-h-[400px]">
+                <div className={`bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl sm:rounded-3xl border-2 ${colors.border} shadow-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden`}>
+                    <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 50% 50%, ${colors.glow.replace('0.6', '0.15')}, transparent 70%)` }}></div>
+                    <div className={`relative bg-gradient-to-br ${colors.from}/50 ${colors.to}/50 rounded-xl sm:rounded-2xl p-8 sm:p-10 lg:p-12 flex items-center justify-center min-h-[250px] sm:min-h-[350px] lg:min-h-[400px]`}>
                         <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
                             <Image
                                 src={pokemon.sprites.other?.dream_world.front_default || '/no-image.png'}
                                 alt={pokemon.name}
                                 fill
-                                className="drop-shadow-[0_0_50px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform duration-500 object-contain"
+                                className="hover:scale-110 transition-transform duration-500 object-contain"
+                                style={{ filter: `drop-shadow(0 0 50px ${colors.glow.replace('0.6', '0.8')})` }}
                             />
                         </div>
                     </div>
                 </div>
 
                 <div className="space-y-4 sm:space-y-6">
-                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1),transparent_60%)]"></div>
+                    <div className={`bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl sm:rounded-3xl border-2 ${colors.border} shadow-2xl p-6 sm:p-8 relative overflow-hidden`}>
+                        <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 80% 20%, ${colors.glow.replace('0.6', '0.1')}, transparent 60%)` }}></div>
 
                         <div className="relative flex flex-col sm:flex-row items-start justify-between gap-4 mb-6 sm:mb-8">
                             <div className="flex-1 min-w-0">
-                                <div className="text-xs sm:text-sm font-black text-blue-400 mb-2 sm:mb-3 tracking-widest">
+                                <div className={`text-xs sm:text-sm font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-2 sm:mb-3 tracking-widest`}>
                                     #{String(pokemon.id).padStart(3, '0')}
                                 </div>
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black capitalize bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent break-words">
+                                <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-black capitalize bg-gradient-to-r ${colors.text} bg-clip-text text-transparent break-words`}>
                                     {pokemon.name}
                                 </h1>
                             </div>
@@ -76,15 +79,15 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                         </div>
 
                         <div className="relative grid grid-cols-2 gap-4 sm:gap-6">
-                            <div className="bg-slate-700/30 rounded-xl p-4 sm:p-5 border border-blue-500/20">
-                                <h3 className="text-xs sm:text-sm font-bold text-blue-400 mb-2 uppercase tracking-wider">Altura</h3>
-                                <p className="text-2xl sm:text-3xl font-black text-cyan-300">
+                            <div className={`bg-slate-700/30 rounded-xl p-4 sm:p-5 border ${colors.border}`}>
+                                <h3 className={`text-xs sm:text-sm font-bold bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-2 uppercase tracking-wider`}>Altura</h3>
+                                <p className={`text-2xl sm:text-3xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent`}>
                                     {pokemon.height / 10}<span className="text-base sm:text-xl text-slate-400 ml-1">m</span>
                                 </p>
                             </div>
-                            <div className="bg-slate-700/30 rounded-xl p-4 sm:p-5 border border-blue-500/20">
-                                <h3 className="text-xs sm:text-sm font-bold text-blue-400 mb-2 uppercase tracking-wider">Peso</h3>
-                                <p className="text-2xl sm:text-3xl font-black text-cyan-300">
+                            <div className={`bg-slate-700/30 rounded-xl p-4 sm:p-5 border ${colors.border}`}>
+                                <h3 className={`text-xs sm:text-sm font-bold bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-2 uppercase tracking-wider`}>Peso</h3>
+                                <p className={`text-2xl sm:text-3xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent`}>
                                     {pokemon.weight / 10}<span className="text-base sm:text-xl text-slate-400 ml-1">kg</span>
                                 </p>
                             </div>
@@ -93,9 +96,9 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
 
                     {pokemonDetails && (
                         <>
-                            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.1),transparent_60%)]"></div>
-                                <h3 className="relative text-xl sm:text-2xl font-black text-blue-300 mb-4 sm:mb-6 uppercase tracking-wider">Estadísticas</h3>
+                            <div className={`bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl sm:rounded-3xl border-2 ${colors.border} shadow-2xl p-6 sm:p-8 relative overflow-hidden`}>
+                                <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 20% 80%, ${colors.glow.replace('0.6', '0.1')}, transparent 60%)` }}></div>
+                                <h3 className={`relative text-xl sm:text-2xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-4 sm:mb-6 uppercase tracking-wider`}>Estadísticas</h3>
                                 <div className="relative grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                                     {pokemonDetails.stats.map((statItem, index) => {
                                         const statNames: Record<string, string> = {
@@ -108,12 +111,12 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                                         };
                                         const statName = statNames[statItem.stat.name] || statItem.stat.name.toUpperCase();
                                         return (
-                                            <div key={index} className="bg-slate-700/30 rounded-lg p-3 sm:p-4 border border-blue-500/20">
+                                            <div key={index} className={`bg-slate-700/30 rounded-lg p-3 sm:p-4 border ${colors.border}`}>
                                                 <div className="text-center">
-                                                    <span className="text-xs font-bold text-blue-400 uppercase tracking-wider block mb-2">
+                                                    <span className={`text-xs font-bold bg-gradient-to-r ${colors.text} bg-clip-text text-transparent uppercase tracking-wider block mb-2`}>
                                                         {statName}
                                                     </span>
-                                                    <span className="text-2xl sm:text-3xl font-black text-cyan-300 block">{statItem.base_stat}</span>
+                                                    <span className={`text-2xl sm:text-3xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent block`}>{statItem.base_stat}</span>
                                                 </div>
                                             </div>
                                         );
@@ -121,9 +124,9 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.1),transparent_60%)]"></div>
-                                <h3 className="relative text-xl sm:text-2xl font-black text-blue-300 mb-4 sm:mb-6 uppercase tracking-wider">Habilidades</h3>
+                            <div className={`bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl sm:rounded-3xl border-2 ${colors.border} shadow-2xl p-6 sm:p-8 relative overflow-hidden`}>
+                                <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 20% 80%, ${colors.glow.replace('0.6', '0.1')}, transparent 60%)` }}></div>
+                                <h3 className={`relative text-xl sm:text-2xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-4 sm:mb-6 uppercase tracking-wider`}>Habilidades</h3>
                                 <div className="relative flex flex-wrap gap-3">
                                     {pokemonDetails.abilities.map((abilityItem, index) => (
                                         <div
@@ -141,9 +144,9 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.1),transparent_60%)]"></div>
-                                <h3 className="relative text-xl sm:text-2xl font-black text-blue-300 mb-4 sm:mb-6 uppercase tracking-wider">Tipos</h3>
+                            <div className={`bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl sm:rounded-3xl border-2 ${colors.border} shadow-2xl p-6 sm:p-8 relative overflow-hidden`}>
+                                <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 20% 80%, ${colors.glow.replace('0.6', '0.1')}, transparent 60%)` }}></div>
+                                <h3 className={`relative text-xl sm:text-2xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-4 sm:mb-6 uppercase tracking-wider`}>Tipos</h3>
                                 <div className="relative flex flex-wrap gap-3">
                                     {pokemonDetails.types.map((typeItem, index) => {
                                         const typeColors: Record<string, string> = {
@@ -179,11 +182,11 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.1),transparent_60%)]"></div>
-                                <h3 className="relative text-xl sm:text-2xl font-black text-blue-300 mb-4 sm:mb-6 uppercase tracking-wider">Experiencia Base</h3>
-                                <div className="relative bg-slate-700/30 rounded-xl p-5 border border-blue-500/20 text-center">
-                                    <p className="text-4xl sm:text-5xl font-black text-cyan-300">
+                            <div className={`bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl sm:rounded-3xl border-2 ${colors.border} shadow-2xl p-6 sm:p-8 relative overflow-hidden`}>
+                                <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 20% 80%, ${colors.glow.replace('0.6', '0.1')}, transparent 60%)` }}></div>
+                                <h3 className={`relative text-xl sm:text-2xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-4 sm:mb-6 uppercase tracking-wider`}>Experiencia Base</h3>
+                                <div className={`relative bg-slate-700/30 rounded-xl p-5 border ${colors.border} text-center`}>
+                                    <p className={`text-4xl sm:text-5xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent`}>
                                         {pokemonDetails.base_experience}
                                         <span className="text-lg sm:text-xl text-slate-400 ml-2">XP</span>
                                     </p>
@@ -192,11 +195,11 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                         </>
                     )}
 
-                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl border-2 border-blue-500/30 shadow-2xl p-6 sm:p-8 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.1),transparent_60%)]"></div>
-                        <h3 className="relative text-xl sm:text-2xl font-black text-blue-300 mb-4 sm:mb-6 uppercase tracking-wider">Sprites</h3>
+                    <div className={`bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl sm:rounded-3xl border-2 ${colors.border} shadow-2xl p-6 sm:p-8 relative overflow-hidden`}>
+                        <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 20% 80%, ${colors.glow.replace('0.6', '0.1')}, transparent 60%)` }}></div>
+                        <h3 className={`relative text-xl sm:text-2xl font-black bg-gradient-to-r ${colors.text} bg-clip-text text-transparent mb-4 sm:mb-6 uppercase tracking-wider`}>Sprites</h3>
                         <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                            <div className={`bg-gradient-to-br ${colors.from}/50 ${colors.to}/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border ${colors.border} hover:scale-110 transition-all duration-300`} style={{ borderColor: colors.border.split('/')[0].replace('border-', '') }}>
                                 <div className="relative w-20 h-20 sm:w-24 sm:h-24">
                                     <Image
                                         src={pokemon.sprites.front_default}
@@ -206,7 +209,7 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                                     />
                                 </div>
                             </div>
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                            <div className={`bg-gradient-to-br ${colors.from}/50 ${colors.to}/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border ${colors.border} hover:scale-110 transition-all duration-300`} style={{ borderColor: colors.border.split('/')[0].replace('border-', '') }}>
                                 <div className="relative w-20 h-20 sm:w-24 sm:h-24">
                                     <Image
                                         src={pokemon.sprites.back_default}
@@ -216,7 +219,7 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                                     />
                                 </div>
                             </div>
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                            <div className={`bg-gradient-to-br ${colors.from}/50 ${colors.to}/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border ${colors.border} hover:scale-110 transition-all duration-300`} style={{ borderColor: colors.border.split('/')[0].replace('border-', '') }}>
                                 <div className="relative w-20 h-20 sm:w-24 sm:h-24">
                                     <Image
                                         src={pokemon.sprites.front_shiny}
@@ -226,7 +229,7 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemonDetails }) => {
                                     />
                                 </div>
                             </div>
-                            <div className="bg-gradient-to-br from-slate-700/50 to-slate-800/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:scale-110">
+                            <div className={`bg-gradient-to-br ${colors.from}/50 ${colors.to}/50 rounded-xl p-3 sm:p-4 flex items-center justify-center border ${colors.border} hover:scale-110 transition-all duration-300`} style={{ borderColor: colors.border.split('/')[0].replace('border-', '') }}>
                                 <div className="relative w-20 h-20 sm:w-24 sm:h-24">
                                     <Image
                                         src={pokemon.sprites.back_shiny}
