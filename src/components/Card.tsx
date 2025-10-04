@@ -28,7 +28,7 @@ const Card: FC<Props> = ({ pokemon }: Props): JSX.Element => {
                         style={{
                             background: `radial-gradient(circle at 50% 50%, ${colors.glow.replace(
                                 '0.6',
-                                '0.1'
+                                '0.1',
                             )}, transparent 70%)`,
                         }}
                     ></div>

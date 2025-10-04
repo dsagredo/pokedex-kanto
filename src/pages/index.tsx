@@ -25,7 +25,7 @@ const Home: NextPage<HomeT> = ({ pokemons }: HomeT): JSX.Element => (
             {pokemons.map(
                 (pokemon: PokemonT): JSX.Element => (
                     <Card key={pokemon.id} pokemon={pokemon} />
-                )
+                ),
             )}
         </div>
     </Layout>
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async (): Promise<{
 
     for (let i = 0; i < 151; i += 20) {
         const batchPromises = Array.from({ length: Math.min(20, 151 - i) }, (_, j: number) =>
-            pokeApi.get(`pokemon/${i + j + 1}`)
+            pokeApi.get(`pokemon/${i + j + 1}`),
         );
 
         const results = await Promise.all(batchPromises);
