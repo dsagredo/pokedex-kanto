@@ -1,4 +1,4 @@
-export interface SmallPokemon {
+export interface PokemonT {
     name: string;
     url: string;
     id: number;

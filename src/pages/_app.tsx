@@ -7,7 +7,7 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700', '800', '900'] });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <main className={inter.className}>
             <NextThemesProvider attribute="class" defaultTheme="dark">

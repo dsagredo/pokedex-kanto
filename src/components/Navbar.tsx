@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const Navbar = () => {
+export const Navbar = (): JSX.Element => {
     return (
         <div className="sticky top-0 z-50 backdrop-blur-2xl bg-slate-900/80 border-b border-blue-500/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-5">
@@ -24,7 +24,9 @@ export const Navbar = () => {
                         <h1 className="text-2xl sm:text-4xl font-black bg-gradient-to-r from-red-400 via-yellow-400 to-blue-400 bg-clip-text text-transparent tracking-tight">
                             POKÉDEX
                         </h1>
-                        <span className="text-[10px] sm:text-xs font-bold text-slate-400 tracking-widest uppercase">Kanto Region</span>
+                        <span className="text-[10px] sm:text-xs font-bold text-slate-400 tracking-widest uppercase">
+                            Kanto Region
+                        </span>
                     </div>
                 </Link>
             </div>
