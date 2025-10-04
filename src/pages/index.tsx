@@ -33,30 +33,34 @@ const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-
-    const pokemons: SmallPokemon[] = [];
+  const pokemons: SmallPokemon[] = [];
 
   for (let i = 0; i < 151; i += 20) {
     const batchPromises = Array.from(
       { length: Math.min(BATCH_SIZE, TOTAL_POKEMON - i) },
-      (_, j) => pokeApi.get<PokemonListResponse>(`pokemon/${i + j + 1}`)
+      (_, j) => pokeApi.get(`pokemon/${i + j + 1}`)
     );
 
+    // Resolver todas las promesas del batch
     const results = await Promise.all(batchPromises);
 
-    const pokemons: SmallPokemon[] = data.results.map((value, index) => ({
-        ...value,
-        id: index + 1,
-        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-            index + 1
-        }.svg`,
-    }));
+    // Agregar los datos al array principal
+    results.forEach((res, index) => {
+      const id = i + index + 1;
+      pokemons.push({
+        ...res.data,
+        id,
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`,
+      });
+    });
+  }
 
-    return {
-        props: {
-            pokemons,
-        },
-    };
+  return {
+    props: {
+      pokemons,
+    },
+  };
+
 };
 
 export default Home;
