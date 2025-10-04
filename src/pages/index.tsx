@@ -41,7 +41,6 @@ export const getStaticProps: GetStaticProps = async () => {
       (_, j) => pokeApi.get(`pokemon/${i + j + 1}`)
     );
 
-    // Resolver todas las promesas del batch
     const results = await Promise.all(batchPromises);
 
     // Agregar los datos al array principal
