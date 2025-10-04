@@ -33,7 +33,16 @@ const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-    const { data } = await pokeApi.get<PokemonListResponse>('pokemon?limit=151');
+
+    const pokemons: SmallPokemon[] = [];
+
+  for (let i = 0; i < 151; i += 20) {
+    const batchPromises = Array.from(
+      { length: Math.min(BATCH_SIZE, TOTAL_POKEMON - i) },
+      (_, j) => pokeApi.get<PokemonListResponse>(`pokemon/${i + j + 1}`)
+    );
+
+    const results = await Promise.all(batchPromises);
 
     const pokemons: SmallPokemon[] = data.results.map((value, index) => ({
         ...value,
