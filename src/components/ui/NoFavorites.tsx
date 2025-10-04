@@ -1,7 +1,7 @@
-import { Container, Text, Image } from '@nextui-org/react';
+// import { Container, Text, Image } from '@nextui-org/react';
 
 const NoFavorites = () => {
-    return (
+    /*return (
         <Container
             css={{
                 display: 'flex',
@@ -20,7 +20,8 @@ const NoFavorites = () => {
                 css={{ opacity: 0.1 }}
             />
         </Container>
-    );
+    );*/
+    return null;
 };
 
 export default NoFavorites;
