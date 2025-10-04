@@ -1,4 +1,4 @@
-# Pokédex Kanto - Next.js 15
+# Pokédex Kanto - Next.js
 
 Aplicación moderna de Pokédex que muestra los 151 Pokémon originales de la región Kanto usando Next.js 15 con App Router y PokeAPI.
 
@@ -30,28 +30,6 @@ Aplicación moderna de Pokédex que muestra los 151 Pokémon originales de la re
 - Tipado completo con TypeScript
 - Información detallada: altura, peso, estadísticas
 - Colores dinámicos según tipo de Pokémon
-
-## Estructura del Proyecto
-
-```
-src/
-├── app/              # Next.js 15 App Router
-│   ├── layout.tsx    # Layout principal con metadata
-│   └── page.tsx      # Página home con Server Components
-├── components/       # Componentes React
-│   ├── Card.tsx      # Tarjeta de Pokémon
-│   ├── Navbar.tsx    # Barra de navegación
-│   └── index.ts
-├── lib/             # Configuraciones y utilidades
-│   └── pokeApi.ts   # Cliente Axios para PokeAPI
-├── types/           # Definiciones TypeScript
-│   ├── pokemon.ts
-│   └── index.ts
-├── utils/           # Funciones auxiliares
-│   └── pokemonColors.ts
-└── styles/          # Estilos globales
-    └── globals.css
-```
 
 ## Instalación
 
