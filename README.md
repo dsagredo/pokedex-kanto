@@ -14,15 +14,15 @@ Simple pokedex app create using NextJS and PokeAPI
 
 ## Build-With:
 
--   nextUI
--   canvas-confetti
--   axios
--   PokeAPI -> https://pokeapi.co
+- nextUI
+- canvas-confetti
+- axios
+- PokeAPI -> https://pokeapi.co
 
 ## Features
 
--   Pokemon List
--   Click Favorites by id.
+- Pokemon List
+- Click Favorites by id.
 
 ## Installation
 

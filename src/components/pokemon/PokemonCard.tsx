@@ -1,7 +1,8 @@
-import { FC } from 'react';
-import { SmallPokemon } from '@/interfaces';
-import { Grid, Card, Row, Text } from '@nextui-org/react';
+import { Card, CardBody, CardFooter } from '@heroui/card';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import type { FC } from 'react';
+import { SmallPokemon } from '@/interfaces';
 
 interface Props {
     pokemon: SmallPokemon;
@@ -9,20 +10,25 @@ interface Props {
 
 const PokemonCard: FC<Props> = ({ pokemon }) => {
     const router = useRouter();
-    const onClick = () => router.push(`/name/${pokemon.name}`);
+
     return (
-        <Grid xs={6} sm={3} md={2} xl={1} key={pokemon.id}>
-            <Card isPressable isHoverable onClick={() => onClick()}>
-                <Card.Body css={{ p: 1 }}>
-                    <Card.Image src={pokemon.img} width="100%" height={140} alt={pokemon.name} />
-                </Card.Body>
-                <Card.Footer>
-                    <Row justify="space-between">
-                        <Text transform="capitalize">{pokemon.name}</Text>
-                    </Row>
-                </Card.Footer>
-            </Card>
-        </Grid>
+        <Card isPressable isHoverable onClick={() => router.push(`/name/${pokemon.name}`)}>
+            <CardBody>
+                <Image
+                    src={pokemon.img}
+                    alt={pokemon.name}
+                    width={256}
+                    height={144}
+                    className="w-full h-36 object-contain"
+                    priority
+                />
+            </CardBody>
+            <CardFooter>
+                <div className="flex justify-between">
+                    <span className="capitalize">{pokemon.name}</span>
+                </div>
+            </CardFooter>
+        </Card>
     );
 };
 
