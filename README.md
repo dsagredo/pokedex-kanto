@@ -1,6 +1,6 @@
 # Pokédex Kanto - Next.js
 
-Aplicación moderna de Pokédex que muestra los 151 Pokémon originales de la región Kanto usando Next.js 15 con App Router y PokeAPI.
+Aplicación moderna de Pokédex que muestra los 151 Pokémon originales de la región Kanto usando Next.js con App Router y PokeAPI.
 
 <div align="center">
 
