@@ -14,7 +14,7 @@ const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
                 {pokemons.map(
                     (pokemon): JSX.Element => (
                         <PokemonCard key={pokemon.id} pokemon={pokemon} />
-                    )
+                    ),
                 )}
             </div>
         </Layout>
