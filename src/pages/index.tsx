@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   for (let i = 0; i < 151; i += 20) {
     const batchPromises = Array.from(
-      { length: Math.min(BATCH_SIZE, TOTAL_POKEMON - i) },
+      { length: Math.min(20, 151 - i) },
       (_, j) => pokeApi.get(`pokemon/${i + j + 1}`)
     );
 
