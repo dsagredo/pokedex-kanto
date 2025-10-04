@@ -1,7 +1,7 @@
 import { Card as StyledCard, CardBody, CardFooter } from '@heroui/card';
 import Image from 'next/image';
 import type { FC } from 'react';
-import { PokemonT } from '@/interface';
+import { PokemonT } from '@/types';
 import { getPokemonTypeColors } from '@/utils/pokemonColors';
 
 interface Props {
