@@ -1,12 +1,18 @@
-import type { AppProps } from 'next/app';
-import { NextUIProvider } from '@nextui-org/react';
 import '@/styles/globals.css';
-import { darkTheme } from '@/themes/darktheme';
+import type { AppProps } from 'next/app';
+import { HeroUIProvider } from '@heroui/react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
-export default function App({ Component, pageProps }: AppProps) {
+import '@/styles/globals.css';
+
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
     return (
-        <NextUIProvider theme={darkTheme}>
-            <Component {...pageProps} />
-        </NextUIProvider>
+        <HeroUIProvider>
+            <NextThemesProvider attribute="class" defaultTheme="system">
+                <Component {...pageProps} />
+            </NextThemesProvider>
+        </HeroUIProvider>
     );
-}
+};
+
+export default App;

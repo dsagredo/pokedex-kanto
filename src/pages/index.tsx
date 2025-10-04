@@ -1,5 +1,4 @@
 import type { NextPage, GetStaticProps } from 'next';
-import { Grid } from '@nextui-org/react';
 import { Layout } from '@/components/layouts';
 import { pokeApi } from '@/api';
 import { PokemonListResponse, SmallPokemon } from '@/interfaces';
@@ -8,14 +7,16 @@ interface Props {
     pokemons: SmallPokemon[];
 }
 
-const Home: NextPage<Props> = ({ pokemons }) => {
+const Home: NextPage<Props> = ({ pokemons }): JSX.Element => {
     return (
         <Layout title="Listado de Pokémons">
-            <Grid.Container gap={2} justify="flex-start">
-                {pokemons.map((pokemon) => (
-                    <PokemonCard key={pokemon.id} pokemon={pokemon} />
-                ))}
-            </Grid.Container>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
+                {pokemons.map(
+                    (pokemon): JSX.Element => (
+                        <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                    )
+                )}
+            </div>
         </Layout>
     );
 };

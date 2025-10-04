@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { SmallPokemon } from '@/interfaces';
-import { Grid, Card, Row, Text } from '@nextui-org/react';
+import { Card, CardHeader, CardBody, CardFooter } from '@heroui/card';
 import { useRouter } from 'next/router';
 
 interface Props {
@@ -11,18 +11,22 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
     const router = useRouter();
     const onClick = () => router.push(`/name/${pokemon.name}`);
     return (
-        <Grid xs={6} sm={3} md={2} xl={1} key={pokemon.id}>
-            <Card isPressable isHoverable onClick={() => onClick()}>
-                <Card.Body css={{ p: 1 }}>
-                    <Card.Image src={pokemon.img} width="100%" height={140} alt={pokemon.name} />
-                </Card.Body>
-                <Card.Footer>
-                    <Row justify="space-between">
-                        <Text transform="capitalize">{pokemon.name}</Text>
-                    </Row>
-                </Card.Footer>
-            </Card>
-        </Grid>
+        <Card className="cursor-pointer hover:shadow-xl transition-shadow" onClick={onClick}>
+            <CardHeader>
+                <img src={pokemon.img} alt={pokemon.name} className="w-full h-36 object-contain" />
+            </CardHeader>
+
+            <CardBody className="p-2">
+                <h2 className="capitalize text-gray-900 dark:text-white font-medium">
+                    {pokemon.name}
+                </h2>
+            </CardBody>
+
+            <CardFooter className="flex justify-between p-2 bg-gray-100 dark:bg-gray-900">
+                {/* Aquí puedes agregar botones, stats, etc. */}
+                <span>ID: {pokemon.id}</span>
+            </CardFooter>
+        </Card>
     );
 };
 
